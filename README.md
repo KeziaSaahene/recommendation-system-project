@@ -1,52 +1,57 @@
-#  Recommendation System Project
+Recommendation System Project
 
-This project is focused on designing and evaluating a personalized recommendation system using historical user interaction data. It applies the CRISP-DM methodology to guide the entire process.
-Tools & Technologies
+This project focuses on designing and evaluating a personalized recommendation system using historical user interaction data. The CRISP-DM methodology guides the process from business understanding to deployment.
+
+🔧 Tools & Technologies
 
 Python – core programming language
 
-Pandas, NumPy, Scipy – data manipulation & matrix factorization
+Pandas, NumPy, SciPy – data manipulation & matrix factorization
 
 Scikit-learn – preprocessing, evaluation metrics, anomaly detection
 
 TensorFlow / Keras – deep learning (CNN & Autoencoder models)
 
-Matplotlib & Seaborn – visualization of insights & anomalies
+Matplotlib & Seaborn – data visualization
 
-Implicit library (ALS) – collaborative filtering (if installed)
+Implicit (ALS) – collaborative filtering (if installed)
 
 GitHub – version control & progress tracking
 
-Dataset
+📂 Dataset
 
 The dataset contains three main files:
 
-events.csv → User interactions (timestamp, visitorid, event, itemid, transactionid)
+events.csv → user interactions (timestamp, visitorid, event, itemid, transactionid)
 
-item_properties_combined.csv → Item properties (timestamp, itemid, categoryid, value)
+item_properties_combined.csv → item metadata (timestamp, itemid, categoryid, value)
 
-category_tree.csv → Hierarchical relationships between item categories (child, parent)
+category_tree.csv → hierarchical item relationships (child, parent)
 
-Preprocessing steps included:
+Preprocessing Steps:
 
-Timestamp conversion (ms → datetime)
+Converted timestamps (ms → datetime)
 
-Cleaning encoded values (e.g., n123 → 123)
+Cleaned encoded values (e.g., n123 → 123)
 
-Normalization of categorical IDs
+Normalized categorical IDs
 
-Building User–Item Interaction Matrix
+Built user–item interaction matrix
 
-CRISP-DM Framework
- Business Understanding
+📊 CRISP-DM Framework
+1. Business Understanding
 
-Objective: Build a personalized recommendation system and detect abnormal users.
+Objective:
+
+Build a personalized recommendation system.
+
+Detect abnormal users (bots, fraud, unusual patterns).
 
 Analytical Questions:
 
 What are the most common user interactions (view, add-to-cart, purchase)?
 
-Which products or categories are most frequently purchased?
+Which products/categories are most frequently purchased?
 
 What is the conversion rate from views → add-to-cart → purchase?
 
@@ -54,33 +59,31 @@ Can we predict the next product category a user is likely to purchase?
 
 How can we recommend relevant items based on past behavior?
 
-Are there abnormal users (e.g., bots, fraud patterns)?
-
 How do anomaly detection methods compare (Isolation Forest vs CNN Autoencoder)?
 
- Data Understanding
+2. Data Understanding
 
-Events dataset → 8.5M+ rows of user interaction logs
+Events dataset: 8.5M+ rows of user interactions
 
-Item properties → product metadata with category & value mapping
+Item properties: metadata requiring latest-value extraction
 
-Category tree → hierarchical grouping of items
+Category tree: hierarchical grouping of items
 
-Key insights:
+Key Insights:
 
-Events are heavily skewed towards views.
+Events are skewed heavily toward views
 
-Transactions form a small but valuable subset.
+Transactions form a small but valuable subset
 
-Item properties required latest-value extraction for labeling.
+Metadata preprocessing was crucial for labeling
 
-Data Preparation
+3. Data Preparation
 
-Converted timestamps
+Converted timestamps → datetime format
 
 Encoded users & items using LabelEncoder
 
-Built User–Item Matrix with weighted interactions:
+Built user–item matrix with weighted interactions:
 
 View = 1
 
@@ -90,25 +93,25 @@ Purchase = 5
 
 Extracted user-level behavioral features (views, adds, buys, conversion rate)
 
-Generated training samples for CNN recommender from historical sequences
+Generated CNN training samples from user histories
 
- Modeling
+4. Modeling
 
-Recommendation Models
+Recommendation Models:
 
-Collaborative Filtering (ALS) → implicit feedback model
+Collaborative Filtering (ALS): implicit feedback model
 
-CNN Classifier → predicts item categories based on user history
+CNN Classifier: predicts item categories from user history
 
-Anomaly Detection
+Anomaly Detection:
 
-Isolation Forest (baseline traditional ML)
+Isolation Forest – traditional ML baseline
 
-CNN Autoencoder (deep learning anomaly detection)
+CNN Autoencoder – deep learning anomaly detection
 
- Evaluation
+5. Evaluation
 
-Recommendation Metrics
+Recommendation Metrics:
 
 Recall@K
 
@@ -116,26 +119,24 @@ Hit Rate@K
 
 NDCG@K
 
-CNN Classifier Results
+CNN Classifier Results:
 
 Accuracy: ~0.85 (validation)
 
-Weighted Precision/Recall/F1 reported
+Reported weighted Precision, Recall, F1
 
-Anomaly Detection Results
+Anomaly Detection Results:
 
-Outlier users detected using reconstruction error threshold (98th percentile)
+Outliers flagged using reconstruction error threshold (98th percentile)
 
-Visualized distribution of errors and flagged anomalies
+Error distributions visualized to highlight anomalies
 
- Deployment / Deliverables
+6. Deployment / Deliverables
 
-✅ cnn_model.h5 – Trained CNN recommender model
-
-✅ cnn_ae.h5 – Trained CNN Autoencoder for anomaly detection
-
+✅ cnn_model.h5 – trained CNN recommender model
+✅ cnn_ae.h5 – trained CNN Autoencoder for anomaly detection
 ✅ Visualization plots:
 
-Error distribution of anomalies
+Anomaly error distribution
 
 User–item recommendation insights
