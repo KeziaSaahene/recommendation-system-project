@@ -94,16 +94,16 @@ Metadata preprocessing was crucial for labeling
 
 
 3. Data Preparation
-Loaded datasets (events.csv, category_tree.csv, item_properties_part1.csv, item_properties_part2.csv) using Dask for efficient handling of large files.
-
-Combined both item_properties csvs(item_properties_part1.csv and item_properties_part2.csv) as one.
-
-Explored dataset structure – checked shape, data types, missing values, duplicates, and unique counts across key identifiers (visitorid, itemid, transactionid).
-
-Converted timestamps into datetime format and extracted additional features (date, hour, day of week, month, month name).
-
-Summarized each dataset (`events.csv`, `category_tree.csv`, `item_properties.csv`) to understand structure, unique counts, and key patterns before analysis.
-
+  •	Data Loading: Imported datasets (events.csv, category_tree.csv, item_properties_part1.csv, item_properties_part2.csv) .
+	•	Merging: Combined item_properties_part1.csv and item_properties_part2.csv into a single consolidated file.
+	•	Exploration & Cleaning:
+    Checked dataset structure (shape, data types, missing values, duplicates).
+    Validated unique identifiers (visitorid, itemid, transactionid).
+	•	Feature Engineering:
+    Converted timestamps from milliseconds to datetime format.
+	•	Dataset Summarization:
+    Summarized all 3 datasets
+    Generated descriptive statistics and unique counts.
 
 
 4. Modeling
