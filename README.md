@@ -28,15 +28,7 @@ item_properties_combined.csv → item metadata (timestamp, itemid, categoryid, v
 
 category_tree.csv → hierarchical item relationships (child, parent)
 
-Preprocessing Steps:
 
-Converted timestamps (ms → datetime)
-
-Cleaned encoded values (e.g., n123 → 123)
-
-Normalized categorical IDs
-
-Built user–item interaction matrix
 
 📊 CRISP-DM Framework
 1. Business Understanding
