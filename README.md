@@ -52,15 +52,35 @@ Detect abnormal users (bots, fraud, unusual patterns).
 Business Questions:
 
 1. How many unique visitors are interacting with the platform?
+ Total number of visitors: 1407580
+
 2. On average, how many events does a visitor generate?
+  Average events per visitor: 1.96
+
 3. How many unique items does a visitor typically interact with?
+   Average unique items per visitor: 1.52
+   
 4. What are the peak hours when visitors are most active?
+  7pm
+   
 5. What are the peak days of the week for visitor activity?
+  Tuesday
+   
 6. How many parent categories exist on the platform?
+   Total number of parent categories: 362
+    
 7. Which are the top parent categories with the most children?
+  Top Parent Categories with Most Children: 250
+    
 8. How many categories exist in the dataset?
+   Total number of categories: 1,092
+    
 9. How many total unique items are available across all categories?
+  Total number of unique items: 5369k
+ 
 10. On average, how many unique items are there per category?
+  Average unique items per category: 4917.18
+
 11. Which are the top 10 most interacted-with categories?
 
 
