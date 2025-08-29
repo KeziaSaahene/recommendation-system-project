@@ -2,7 +2,7 @@ Recommendation System Project
 
 This project focuses on designing and evaluating a personalized recommendation system using historical user interaction data. The CRISP-DM methodology guides the process from business understanding to deployment.
 
-🔧 Tools & Technologies
+Tools & Technologies
 
 Python – core programming language
 
@@ -18,7 +18,7 @@ Implicit (ALS) – collaborative filtering (if installed)
 
 GitHub – version control & progress tracking
 
-📂 Dataset
+Dataset
 
 The dataset contains three main files:
 
@@ -47,19 +47,22 @@ Build a personalized recommendation system.
 
 Detect abnormal users (bots, fraud, unusual patterns).
 
-Analytical Questions:
 
-What are the most common user interactions (view, add-to-cart, purchase)?
 
-Which products/categories are most frequently purchased?
+Business Questions:
 
-What is the conversion rate from views → add-to-cart → purchase?
+1. How many unique visitors are interacting with the platform?
+2. On average, how many events does a visitor generate?
+3. How many unique items does a visitor typically interact with?
+4. What are the peak hours when visitors are most active?
+5. What are the peak days of the week for visitor activity?
+6. How many parent categories exist on the platform?
+7. Which are the top parent categories with the most children?
+8. How many categories exist in the dataset?
+9. How many total unique items are available across all categories?
+10. On average, how many unique items are there per category?
+11. Which are the top 10 most interacted-with categories?
 
-Can we predict the next product category a user is likely to purchase?
-
-How can we recommend relevant items based on past behavior?
-
-How do anomaly detection methods compare (Isolation Forest vs CNN Autoencoder)?
 
 2. Data Understanding
 
@@ -77,66 +80,46 @@ Transactions form a small but valuable subset
 
 Metadata preprocessing was crucial for labeling
 
+
 3. Data Preparation
+Loaded datasets (events.csv, category_tree.csv, item_properties_part1.csv, item_properties_part2.csv) using Dask for efficient handling of large files.
 
-Converted timestamps → datetime format
+Combined both item_properties csvs(item_properties_part1.csv and item_properties_part2.csv) as one.
 
-Encoded users & items using LabelEncoder
+Explored dataset structure – checked shape, data types, missing values, duplicates, and unique counts across key identifiers (visitorid, itemid, transactionid).
 
-Built user–item matrix with weighted interactions:
+Converted timestamps into datetime format and extracted additional features (date, hour, day of week, month, month name).
 
-View = 1
+Summarized each dataset (`events.csv`, `category_tree.csv`, `item_properties.csv`) to understand structure, unique counts, and key patterns before analysis.
 
-Add-to-cart = 3
 
-Purchase = 5
-
-Extracted user-level behavioral features (views, adds, buys, conversion rate)
-
-Generated CNN training samples from user histories
 
 4. Modeling
-
-Recommendation Models:
-
-Collaborative Filtering (ALS): implicit feedback model
-
-CNN Classifier: predicts item categories from user history
+CNN Model:
+Modeling: Built a tuned CNN model on user-item interaction sequences using tokenized item properties.
+Training: Applied early stopping and optimized with Adam.
 
 Anomaly Detection:
+Modeling: Built user-level behavioral features and trained a CNN Autoencoder for unsupervised anomaly detection.
+Training: Used reconstruction loss (MSE) with early stopping.
 
-Isolation Forest – traditional ML baseline
-
-CNN Autoencoder – deep learning anomaly detection
 
 5. Evaluation
+For CNN Model
 
-Recommendation Metrics:
+Evaluation: Assessed model with accuracy, precision, recall, F1-score, and ranking metrics (Recall@K, Hit Rate@K, NDCG@K).
 
-Recall@K
+For Anomaly Detection:
 
-Hit Rate@K
-
-NDCG@K
-
-CNN Classifier Results:
-
-Accuracy: ~0.85 (validation)
-
-Reported weighted Precision, Recall, F1
-
-Anomaly Detection Results:
-
-Outliers flagged using reconstruction error threshold (98th percentile)
+Evaluation: Flagged abnormal users based on high reconstruction error (top 2% threshold).
 
 Error distributions visualized to highlight anomalies
 
 6. Deployment / Deliverables
+Recommender System: Saved trained CNN model, tokenizer, and label encoder as reusable artifacts.
 
-✅ cnn_model.h5 – trained CNN recommender model
-✅ cnn_ae.h5 – trained CNN Autoencoder for anomaly detection
-✅ Visualization plots:
+Anomaly Detection: Saved CNN Autoencoder model and feature scaler for consistent scoring.
 
-Anomaly error distribution
+These artifacts enable future inference without retraining.
 
-User–item recommendation insights
+
